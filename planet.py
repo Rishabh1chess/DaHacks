@@ -36,9 +36,39 @@ class Planet:
         self.color = random.choice([
             (236, 37, 37), (236, 151, 37), (247, 219, 41),
             (41, 247, 72), (46, 231, 208), (46, 63, 231),
-            (221, 53, 232), (255, 84, 180),
+            (221, 53, 232), (255, 84, 180), (255, 165, 0),
+            (138, 43, 226), (60, 179, 113), (0, 255, 255),
+            (255, 105, 180), (34, 139, 34), (0, 191, 255),
+            (255, 215, 0), (139, 0, 139), (255, 69, 0),
+            (218, 112, 214), (173, 255, 47)
         ])
         self.trail = []  # List to store trail positions
+
+    def draw(self):
+        # Draw a neon-like trail
+        if len(self.trail) > 1:
+            for i in range(len(self.trail) - 1):
+                start_pos = (int(self.trail[i][0]), int(self.trail[i][1]))
+                end_pos = (int(self.trail[i + 1][0]), int(self.trail[i + 1][1]))
+                
+                # Calculate opacity based on trail segment's position (older segments are dimmer)
+                opacity = max(30, 255 - (i * 10))  # Gradually decrease opacity
+                trail_color = (*self.color, opacity)
+
+                # Draw a glow effect by layering circles with reduced opacity
+                for j in range(6):  # Number of glow layers for intensity
+                    glow_radius = int(self.radius - j + 4)
+                    glow_opacity = max(0, opacity - j * 30)  # Fades with each layer
+                    glow_color = (*self.color, glow_opacity)
+
+                    pygame.draw.circle(screen, glow_color, start_pos, glow_radius)
+
+            # Draw a thick, solid neon line along the trail path
+            pygame.draw.lines(screen, self.color, False, [(int(tx), int(ty)) for tx, ty in self.trail], 5)
+
+        # Draw the planet with a slightly larger neon outline for more glow
+        pygame.draw.circle(screen, (255, 255, 255), (int(self.x), int(self.y)), int(self.radius + 5), 3)  # Outer glow
+        pygame.draw.circle(screen, self.color, (int(self.x), int(self.y)), int(self.radius))
 
     def update(self, black_hole):
         self.get_velocity()
