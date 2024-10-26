@@ -7,7 +7,7 @@ from pygame.locals import QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION
 # Initialize Pygame
 pygame.init()
 clock = pygame.time.Clock()
-pygame.display.set_caption("Black Hole Absorption Stimulation")
+pygame.display.set_caption("Black Hole Absorption Simulation")
 
 # Constants
 WINDOW_SIZE = (1820, 1050)
