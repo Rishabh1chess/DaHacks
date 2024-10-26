@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Black Hole Simulation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Example for visualization -->
+    <style>
+        /* Center the title */
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #000; /* Optional: Black background for space theme */
+            color: #fff; /* Optional: White text for contrast */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Style the play button */
+        .play-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #1e90ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        .play-button:hover {
+            background-color: #3742fa;
+        }
+
+        /* Adjust canvas positioning if needed */
+        #simulationChart {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Black Hole Simulation</h1>
+    <button class="play-button" id="playButton">Play</button>
+    <canvas id="simulationChart" width="400" height="200"></canvas>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
